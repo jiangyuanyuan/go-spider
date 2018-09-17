@@ -42,12 +42,11 @@ func SpiderPage(i int) {
 	//已经拿到了网页源码  开始正则匹配
 	//fmt.Printf(result)
 	//<p class="title" id="rentid_D09_01_02">
-	//               <a href="/chuzu/3_210286731_1.htm" data_channel="1,2" target="_blank" title="大学城地铁口 大型青年社区 品牌家电 大阳台独立厨卫">大学城地铁口 大型青年社区 品牌家电 大阳台独立厨卫</a>
+	//                <a href="/chuzu/3_210286731_1.htm" data_channel="1,2" target="_blank" title="大学城地铁口 大型青年社区 品牌家电 大阳台独立厨卫">大学城地铁口 大型青年社区 品牌家电 大阳台独立厨卫</a>
 	//
-	//           </p>
+	//            </p>
 
-	re := regexp.MustCompile(`<p class="title" id="rentid_D09_01_02">
-	               <a href="(?s:(.*?))" data_channel=`)
+	re := regexp.MustCompile(`<h1 class="dp-b"><a href="(?s:(.*?))"`)
 	if re == nil {
 		fmt.Printf("正则匹配失败")
 		return
@@ -55,7 +54,7 @@ func SpiderPage(i int) {
 	links := re.FindAllStringSubmatch(result, -1)
 	//fmt.Println("链接",links)
 	for _, data := range links {
-		fmt.Println("url = ", data)
+		fmt.Println("url = " + data[1])
 		title, content, err := SpiderOne(data[1])
 		if err != nil {
 			fmt.Println("子网页出错", err)
@@ -100,7 +99,6 @@ func SpiderOne(url string) (title string, content string, err error) {
 	tempContent := re1.FindAllStringSubmatch(result, -1)
 	for _, data := range tempContent {
 		fmt.Println("data = ", data)
-		content = data[1]
 	}
 	return
 
