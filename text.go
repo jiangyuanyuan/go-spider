@@ -28,8 +28,8 @@ func Dowrok(start int, end int) {
 
 }
 func SpiderPage(i int) {
-	//url := "https://www.pengfu.com/index_"+strconv.Itoa(i)+".html"
-	url := "http://sz.zu.fang.com/house/i3" + strconv.Itoa(i) + "/"
+	url := "https://www.pengfu.com/index_" + strconv.Itoa(i) + ".html"
+	//url := "http://sz.zu.fang.com/house/i3" + strconv.Itoa(i) + "/"
 	//url := "https://www.pengfu.com/index_2.html"
 	fmt.Printf("正在爬取第%d个网页：%s\n", i, url)
 
